@@ -14,7 +14,10 @@
             "defaultValue": "canadacentral"
         }
     },
-    "resources": [
+    "variables": {
+        "ApplicationInsights.API.Id": "[resourceId('Portail-QAS', 'Microsoft.Insights/components', parameters('name'))]"
+     },
+     "resources": [
         {
             "type": "microsoft.insights/components",
             "name": "[parameters('name')]",
@@ -29,15 +32,11 @@
         }
     ],
     "outputs": {
-    "api": {
-      "type": "object",
-      "value": {
-        "id": "[variables('ApplicationInsights.API.Id')]",
-        "name": "[parameters('ApplicationInsights.API.Name')]",
-        "appId": "[reference(variables('ApplicationInsights.API.Id'), '2015-05-01').AppId]",
-        "apiKey": "[parameters('ApplicationInsights.API.ApiKey')]",
-        "instrumentationKey": "[reference(variables('ApplicationInsights.API.Id'), '2015-05-01').InstrumentationKey]"
-      }
-    }
+        "api": {
+            "type": "object",
+            "value": {
+                "instrumentationKey": "[reference(variables('ApplicationInsights.API.Id'), '2015-05-01').InstrumentationKey]"
+            }
         }
+    }
 }
