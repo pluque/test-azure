@@ -1,0 +1,31 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "String"
+        },
+        "type": {
+            "type": "String",
+            "defaultValue": "web"
+        },
+        "regionId": {
+            "type": "String",
+            "defaultValue": "canadacentral"
+        }
+    },
+    "resources": [
+        {
+            "type": "microsoft.insights/components",
+            "name": "[parameters('name')]",
+            "apiVersion": "2014-08-01",
+            "location": "[parameters('regionId')]",
+            "properties": {
+                "ApplicationId": "[parameters('name')]",
+                "Application_Type": "[parameters('type')]",
+                "Flow_Type": "Redfield",
+                "Request_Source": "IbizaAIExtension"
+            }
+        }
+    ]
+}
