@@ -27,5 +27,17 @@
                 "Request_Source": "IbizaAIExtension"
             }
         }
-    ]
+    ],
+    "outputs": {
+    "api": {
+      "type": "object",
+      "value": {
+        "id": "[variables('ApplicationInsights.API.Id')]",
+        "name": "[parameters('ApplicationInsights.API.Name')]",
+        "appId": "[reference(variables('ApplicationInsights.API.Id'), '2015-05-01').AppId]",
+        "apiKey": "[parameters('ApplicationInsights.API.ApiKey')]",
+        "instrumentationKey": "[reference(variables('ApplicationInsights.API.Id'), '2015-05-01').InstrumentationKey]"
+      }
+    }
+        }]
 }
